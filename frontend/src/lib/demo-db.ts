@@ -29,6 +29,18 @@ const DEMO_ANALYSES: AnalysisResult[] = [
     status: 'completed', is_bullying: false, severity: 'none', category: 'none', confidence_score: 0.99,
     explanation: 'Standard logistical conversation. No harmful patterns detected.',
     created_at: new Date(Date.now() - 3600000).toISOString()
+  },
+  {
+    id: 'ana_3', user_id: 'usr_alex123', source_type: 'text', original_text: 'You are so ugly, nobody wants to look at you.',
+    status: 'completed', is_bullying: true, severity: 'medium', category: 'harassment', confidence_score: 0.88,
+    explanation: 'Contains appearance-based bullying language targeting an individual.',
+    suggested_action: 'Review content and warn the user.', created_at: new Date(Date.now() - 7200000).toISOString()
+  },
+  {
+    id: 'ana_4', user_id: 'usr_jordan123', source_type: 'text', original_text: 'Great job on the presentation today! Really impressive work.',
+    status: 'completed', is_bullying: false, severity: 'none', category: 'none', confidence_score: 0.97,
+    explanation: 'Positive and encouraging language. No harmful patterns detected.',
+    created_at: new Date(Date.now() - 1800000).toISOString()
   }
 ];
 
@@ -39,6 +51,13 @@ const DEMO_INCIDENTS: Incident[] = [
     escalation_level: 'admin_review', review_status: 'open', action_taken: 'none', admin_notes: '',
     severity: 'high', category: 'insult', confidence_score: 0.94,
     created_at: new Date(Date.now() - 86400000).toISOString(), updated_at: new Date(Date.now() - 86400000).toISOString()
+  },
+  {
+    id: 'inc_2', analysis_id: 'ana_3', user_id: 'usr_alex123', user_name: 'Alex Johnson', user_email: 'alex@demo.com',
+    source_type: 'text', original_text: 'You are so ugly, nobody wants to look at you.', risk_score: 65,
+    escalation_level: 'warning', review_status: 'open', action_taken: 'none', admin_notes: '',
+    severity: 'medium', category: 'harassment', confidence_score: 0.88,
+    created_at: new Date(Date.now() - 7200000).toISOString(), updated_at: new Date(Date.now() - 7200000).toISOString()
   }
 ];
 
@@ -56,6 +75,11 @@ export const db = {
 
   reset: () => {
     clearStorage();
+    // Re-seed immediately so the next page has data
+    setStorage(KEYS.USERS, DEMO_USERS);
+    setStorage(KEYS.ANALYSES, DEMO_ANALYSES);
+    setStorage(KEYS.INCIDENTS, DEMO_INCIDENTS);
+    setStorage(KEYS.SEEDED, true);
     if (typeof window !== 'undefined') {
       window.location.href = '/login';
     }

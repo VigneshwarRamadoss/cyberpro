@@ -23,8 +23,8 @@ export function formatDateTime(dateString: string): string {
   });
 }
 
-export function formatConfidence(score: number | null): string {
-  if (score === null) return 'N/A';
+export function formatConfidence(score: number | null | undefined): string {
+  if (score == null) return 'N/A';
   return `${Math.round(score * 100)}%`;
 }
 

@@ -76,6 +76,7 @@ export default function LoginPage() {
             <Input
               label="Email"
               type="email"
+              autoComplete="email"
               placeholder="you@example.com"
               error={errors.email?.message}
               {...register('email')}
@@ -84,6 +85,7 @@ export default function LoginPage() {
             <Input
               label="Password"
               type="password"
+              autoComplete="current-password"
               placeholder="Enter your password"
               error={errors.password?.message}
               {...register('password')}
@@ -115,14 +117,14 @@ export default function LoginPage() {
           <p className="text-caption text-text-muted text-center mb-2">Demo Credentials</p>
           <div className="grid grid-cols-2 gap-3 text-caption">
             <div className="bg-surface rounded-input p-2.5 border border-border">
-              <p className="text-text-muted">Admin</p>
-              <p className="text-text-secondary">admin@shieldspeak.com</p>
-              <p className="text-text-muted">admin123!</p>
+              <p className="text-text-secondary font-medium">Admin</p>
+              <p className="text-text-primary">admin@shieldspeak.com</p>
+              <p className="text-text-secondary">any password</p>
             </div>
             <div className="bg-surface rounded-input p-2.5 border border-border">
-              <p className="text-text-muted">User</p>
-              <p className="text-text-secondary">alex@demo.com</p>
-              <p className="text-text-muted">demo123!</p>
+              <p className="text-text-secondary font-medium">User</p>
+              <p className="text-text-primary">alex@demo.com</p>
+              <p className="text-text-secondary">any password</p>
             </div>
           </div>
         </div>

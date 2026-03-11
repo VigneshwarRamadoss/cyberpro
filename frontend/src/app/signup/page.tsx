@@ -85,6 +85,7 @@ export default function SignupPage() {
             <Input
               label="Email"
               type="email"
+              autoComplete="email"
               placeholder="you@example.com"
               error={errors.email?.message}
               {...register('email')}
@@ -93,6 +94,7 @@ export default function SignupPage() {
             <Input
               label="Password"
               type="password"
+              autoComplete="new-password"
               placeholder="At least 8 characters"
               error={errors.password?.message}
               {...register('password')}
@@ -101,6 +103,7 @@ export default function SignupPage() {
             <Input
               label="Confirm Password"
               type="password"
+              autoComplete="new-password"
               placeholder="Re-enter your password"
               error={errors.confirm_password?.message}
               {...register('confirm_password')}

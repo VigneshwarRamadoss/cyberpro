@@ -18,7 +18,7 @@ module.exports = {
           DEFAULT: '#0077b6',
           hover: '#0096c7',
         },
-        accent: '#caf0f8',
+        accent: '#00b4d8',
         'focus-ring': '#00b4d8',
         'text-primary': '#ffffff',
         'text-secondary': '#e0e0e0',

@@ -73,14 +73,36 @@ export const authApi = {
   },
 };
 
-// Simple mock NLP logic
+// Expanded mock NLP logic
 function detectMockBullying(text: string) {
   const lower = text.toLowerCase();
+  // Severe insults
   if (lower.includes('hate') || lower.includes('worthless') || lower.includes('stupid')) {
     return { isBullying: true, severity: 'high', category: 'insult', confidence: 0.92, score: 85 };
   }
-  if (lower.includes('shut up') || lower.includes('loser')) {
-    return { isBullying: true, severity: 'medium', category: 'harassment', confidence: 0.85, score: 65 };
+  // Threats
+  if (lower.includes('kill') || lower.includes('die') || lower.includes('hurt you') || lower.includes('beat you')) {
+    return { isBullying: true, severity: 'critical', category: 'threat', confidence: 0.95, score: 95 };
+  }
+  // Appearance-based bullying
+  if (lower.includes('ugly') || lower.includes('fat') || lower.includes('pathetic') || lower.includes('disgusting')) {
+    return { isBullying: true, severity: 'medium', category: 'harassment', confidence: 0.88, score: 65 };
+  }
+  // Slurs and name-calling
+  if (lower.includes('idiot') || lower.includes('dumb') || lower.includes('retard') || lower.includes('moron')) {
+    return { isBullying: true, severity: 'medium', category: 'insult', confidence: 0.86, score: 60 };
+  }
+  // Exclusion/isolation
+  if (lower.includes('nobody likes') || lower.includes('no friends') || lower.includes('no one cares') || lower.includes('everyone hates')) {
+    return { isBullying: true, severity: 'medium', category: 'exclusion', confidence: 0.82, score: 55 };
+  }
+  // Intimidation
+  if (lower.includes('watch out') || lower.includes('gonna get you') || lower.includes('you\'ll regret') || lower.includes('you\'re dead')) {
+    return { isBullying: true, severity: 'high', category: 'intimidation', confidence: 0.90, score: 80 };
+  }
+  // Mild harassment
+  if (lower.includes('shut up') || lower.includes('loser') || lower.includes('go away') || lower.includes('freak')) {
+    return { isBullying: true, severity: 'low', category: 'harassment', confidence: 0.78, score: 40 };
   }
   return { isBullying: false, severity: 'none', category: 'none', confidence: 0.98, score: 5 };
 }
